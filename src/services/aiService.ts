@@ -28,7 +28,7 @@ export async function generateQuestions(category: Category, count: number = 5): 
       model: "gemini-3-flash-preview",
       contents: prompt,
     });
-    
+
     const text = response.text;
     if (!text) return [];
 
