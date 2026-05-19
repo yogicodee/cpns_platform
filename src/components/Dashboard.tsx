@@ -14,28 +14,28 @@ export function Dashboard({ stats, onStartTryout }: DashboardProps) {
     <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
       {/* Header / Stats Summary */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <StatCard 
-          icon={<Zap className="text-yellow-500" />} 
-          label="Streak Harian" 
-          value={`${stats.streak} Hari`} 
+        <StatCard
+          icon={<Zap className="text-yellow-500" />}
+          label="Streak Harian"
+          value={`${stats.streak} Hari`}
           subValue="Konsistensi adalah kunci"
         />
-        <StatCard 
-          icon={<Trophy className="text-blue-500" />} 
-          label="Level" 
-          value={`Lvl ${stats.level}`} 
+        <StatCard
+          icon={<Trophy className="text-blue-500" />}
+          label="Level"
+          value={`Lvl ${stats.level}`}
           subValue={`${stats.xp} XP terkumpul`}
         />
-        <StatCard 
-          icon={<Target className="text-red-500" />} 
-          label="Tryout Selesai" 
-          value={stats.totalTryouts.toString()} 
+        <StatCard
+          icon={<Target className="text-red-500" />}
+          label="Tryout Selesai"
+          value={stats.totalTryouts.toString()}
           subValue="Siap tempur!"
         />
-        <StatCard 
-          icon={<BarChart2 className="text-green-500" />} 
-          label="Skor Rata-rata" 
-          value="385" 
+        <StatCard
+          icon={<BarChart2 className="text-green-500" />}
+          label="Skor Rata-rata"
+          value="385"
           subValue="Naik 12% dari minggu lalu"
         />
       </div>
@@ -68,26 +68,26 @@ export function Dashboard({ stats, onStartTryout }: DashboardProps) {
       {/* Analysis Placeholder */}
       <div className="bg-white rounded-2xl border border-zinc-200 p-8 shadow-sm overflow-hidden relative">
         <div className="absolute top-0 right-0 p-4 opacity-5">
-            <BarChart2 size={120} />
+          <BarChart2 size={120} />
         </div>
         <div className="relative z-10">
-            <h3 className="text-xl font-bold mb-4">Analisis Kelemahan</h3>
-            <p className="text-zinc-600 mb-6 max-w-2xl">
-                AI kami mendeteksi kamu masih lemah di bagian <strong>TIU - Logika Numerik</strong> dan <strong>TWK - Pilar Negara</strong>.
-                Yuk, maksimalkan latihan di topik tersebut!
-            </p>
-            <div className="flex flex-wrap gap-4">
-                {stats.weakTopics.map(topic => (
-                    <span key={topic} className="px-3 py-1 bg-red-50 text-red-700 rounded-full text-sm font-medium border border-red-100 italic font-serif">
-                        # {topic}
-                    </span>
-                ))}
-                {stats.strongTopics.map(topic => (
-                    <span key={topic} className="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm font-medium border border-green-100 italic font-serif">
-                        # {topic}
-                    </span>
-                ))}
-            </div>
+          <h3 className="text-xl font-bold mb-4">Analisis Kelemahan</h3>
+          <p className="text-zinc-600 mb-6 max-w-2xl">
+            AI kami mendeteksi kamu masih lemah di bagian <strong>TIU - Logika Numerik</strong> dan <strong>TWK - Pilar Negara</strong>.
+            Yuk, maksimalkan latihan di topik tersebut!
+          </p>
+          <div className="flex flex-wrap gap-4">
+            {stats.weakTopics.map(topic => (
+              <span key={topic} className="px-3 py-1 bg-red-50 text-red-700 rounded-full text-sm font-medium border border-red-100 italic font-serif">
+                # {topic}
+              </span>
+            ))}
+            {stats.strongTopics.map(topic => (
+              <span key={topic} className="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm font-medium border border-green-100 italic font-serif">
+                # {topic}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@ export function Dashboard({ stats, onStartTryout }: DashboardProps) {
 
 function StatCard({ icon, label, value, subValue }: { icon: React.ReactNode, label: string, value: string, subValue: string }) {
   return (
-    <motion.div 
+    <motion.div
       whileHover={{ y: -2 }}
       className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm transition-shadow hover:shadow-md"
     >
