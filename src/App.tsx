@@ -38,15 +38,15 @@ export default function App() {
 
   const startTryout = async (type: 'SIMULATION' | 'PRACTICE' | 'ADAPTIVE') => {
     setAppState('LOADING');
-    
+
     let questions = [...SAMPLE_QUESTIONS];
-    
+
     if (type === 'ADAPTIVE') {
-        const aiQuestions = await generateQuestions('TIU', 5); // Example: adaptive for TIU
-        if (aiQuestions.length > 0) questions = aiQuestions;
+      const aiQuestions = await generateQuestions('TIU', 5); // Example: adaptive for TIU
+      if (aiQuestions.length > 0) questions = aiQuestions;
     } else if (type === 'SIMULATION') {
-        // In real app, we would fetch 110 questions. For MVP, we use sample + some generated
-        questions = [...SAMPLE_QUESTIONS, ...SAMPLE_QUESTIONS, ...SAMPLE_QUESTIONS]; 
+      // In real app, we would fetch 110 questions. For MVP, we use sample + some generated
+      questions = [...SAMPLE_QUESTIONS, ...SAMPLE_QUESTIONS, ...SAMPLE_QUESTIONS];
     }
 
     const session: TryoutSession = {
@@ -64,22 +64,22 @@ export default function App() {
 
   const completeTryout = (answers: Record<string, UserAnswer>) => {
     if (!currentSession) return;
-    
+
     const updatedSession: TryoutSession = {
       ...currentSession,
       answers,
       status: 'COMPLETED',
       endTime: Date.now(),
     };
-    
+
     setCurrentSession(updatedSession);
-    
+
     // Update stats logic (pseudo)
     setStats(prev => ({
-        ...prev,
-        totalTryouts: prev.totalTryouts + 1,
-        xp: prev.xp + 100,
-        level: Math.floor((prev.xp + 100) / 500) + 1
+      ...prev,
+      totalTryouts: prev.totalTryouts + 1,
+      xp: prev.xp + 100,
+      level: Math.floor((prev.xp + 100) / 500) + 1
     }));
 
     setAppState('RESULT');
@@ -96,21 +96,21 @@ export default function App() {
             exit={{ opacity: 0 }}
           >
             <nav className="h-20 bg-white border-b border-zinc-200 px-8 flex items-center justify-between sticky top-0 z-50">
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center">
-                        <Brain size={18} className="text-white" />
-                    </div>
-                    <span className="text-xl font-black tracking-tighter text-zinc-900">CPNS MASTER <span className="text-indigo-600">AI</span></span>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center">
+                  <Brain size={18} className="text-white" />
                 </div>
-                <div className="flex items-center gap-6">
-                    <div className="text-right">
-                        <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Peringkat</div>
-                        <div className="text-xs font-bold text-zinc-900">Top 5% Nasional</div>
-                    </div>
-                    <div className="w-10 h-10 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-700 font-bold">
-                        YU
-                    </div>
+                <span className="text-xl font-black tracking-tighter text-zinc-900">CPNS MASTER <span className="text-indigo-600">AI</span></span>
+              </div>
+              <div className="flex items-center gap-6">
+                <div className="text-right">
+                  <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Peringkat</div>
+                  <div className="text-xs font-bold text-zinc-900">Top 5% Nasional</div>
                 </div>
+                <div className="w-10 h-10 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-700 font-bold">
+                  YU
+                </div>
+              </div>
             </nav>
             <Dashboard stats={stats} onStartTryout={startTryout} />
           </motion.div>
@@ -124,14 +124,14 @@ export default function App() {
             exit={{ opacity: 0 }}
             className="h-screen flex flex-col items-center justify-center space-y-6"
           >
-            <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
-                className="w-16 h-16 border-4 border-zinc-200 border-t-zinc-900 rounded-full"
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+              className="w-16 h-16 border-4 border-zinc-200 border-t-zinc-900 rounded-full"
             />
             <div className="text-center space-y-2">
-                <h3 className="text-lg font-bold uppercase tracking-widest">Menyiapkan Ruang Ujian</h3>
-                <p className="text-sm text-zinc-400">AI sedang memformulasikan soal ujian terbaik untukmu...</p>
+              <h3 className="text-lg font-bold uppercase tracking-widest">Menyiapkan Ruang Ujian</h3>
+              <p className="text-sm text-zinc-400">AI sedang memformulasikan soal ujian terbaik untukmu...</p>
             </div>
           </motion.div>
         )}
@@ -154,10 +154,10 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <ResultView 
-                session={currentSession} 
-                onBackToMenu={() => setAppState('DASHBOARD')}
-                onRestart={() => startTryout(currentSession.type)}
+            <ResultView
+              session={currentSession}
+              onBackToMenu={() => setAppState('DASHBOARD')}
+              onRestart={() => startTryout(currentSession.type)}
             />
           </motion.div>
         )}
